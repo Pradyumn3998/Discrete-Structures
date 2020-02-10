@@ -2,7 +2,6 @@
 #include<math.h>
 
 using namespace std;
-
 class SET{
 
 	protected:
@@ -55,7 +54,22 @@ class SET{
             	cout<<"\n It is not a subset of first";
             }
 		}
-		void Union();
+		void Union(SET obj){
+ 			cout<<"Union of Sets:\n\t{ ";
+    		for(int i=0;i<this.size;i++){
+    			int g=0;
+    			for(int j=0;j<obj.size;j++){
+      				if(this->a[i]==obj.a[j]){
+        				cout<<this->a[i]<<" ";
+        				break;
+      				}
+      				if(this->a[i] != obj.a[i]){
+      					cout<<obj.a[i]<<" ";
+      				}
+    			}	
+ 			}
+ 		}
+		
 		void Complement();
 		SET CartisianProduct(SET obj){
             cout<<"{";
