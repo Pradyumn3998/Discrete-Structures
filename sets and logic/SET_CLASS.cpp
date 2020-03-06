@@ -166,7 +166,15 @@ int main()
    int ch;
 
    do{
-   cout<<"\n\n\tMENU\n1\tTo check For Subset\n2\tTo Find Union and Intersection of Sets\n3\tTo Find Complement of Set\n4\tTo Find Difference And Symmetric Difference of two Sets\n5\tTo find Cartesian Product of Sets\n\n\n";
+   cout<<"\n#########################################";
+   cout<<"\n##                 MENU                  ";
+   cout<<"\n#########################################";
+   cout<<"\n1. To check for Subset";
+   cout<<"\n2. To Find Union and Intersection";
+   cout<<"\n3. To find Complement of Set";
+   cout<<"\n4. To find Difference and Symmetric Difference of two Sets";
+   cout<<"\n5. To check for Subset";
+   cout<<"\n6. To find Cartesian Product of Sets\n\n";
    cin>>ch;
    switch(ch){
      case 1:
@@ -214,4 +222,3 @@ int main()
  }while (d=='y'||d=='Y');
  return 0;
 }
-
