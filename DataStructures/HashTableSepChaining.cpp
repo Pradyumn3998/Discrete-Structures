@@ -62,6 +62,38 @@ int search(int value)
     return 0;
 }
 
+int del(int value)
+{
+    int key = value % size;
+    struct node *temp = chain[key], *dealloc;
+    if(temp != NULL)
+    {
+        if(temp->data == value)
+        {
+            dealloc = temp;
+            temp = temp->next;
+            free(dealloc);
+            return 1;
+        }
+        else
+        {
+            while(temp->next)
+            {
+                if(temp->next->data == value)
+                {
+                    dealloc = temp->next;
+                    temp->next = temp->next->next;
+                    free(dealloc);
+                    return 1;
+                }
+                temp = temp->next;
+            }
+        }
+    }
+
+    return 0;
+}
+
 void print()
 {
     int i;
