@@ -126,4 +126,113 @@ void constructFailureTable(
         } 
     } 
 } 
+
   
+// Function to implement the realtime 
+// optimized KMP algorithm for 
+// pattern searching. T is the text 
+// we are searching on and 
+// P is the pattern we are searching for 
+void KMP(string& T, string& P, 
+         set<char>& pattern_alphabet) 
+{ 
+  
+    // Size of the pattern 
+    int m = P.size(); 
+  
+    // Size of the text 
+    int n = T.size(); 
+  
+    // Initialize the Failure Function 
+    int F[m]; 
+  
+    // Constructing the failure function 
+    // using KMP algorithm 
+    constructFailureFunction(P, F); 
+    printArr(F, m, 'F'); 
+  
+    unordered_map<char, int*> FT; 
+  
+    // Construct the failure table and 
+    // store it in FT[][] 
+    constructFailureTable( 
+        P, 
+        pattern_alphabet, 
+        F, FT); 
+    printTable(FT, m); 
+  
+    // The starting index will be when 
+    // the first match occurs 
+    int found_index = -1; 
+  
+    // Variable to iterate over the 
+    // indices in Text T 
+    int i = 0; 
+  
+    // Variable to iterate over the 
+    // indices in Pattern P 
+    int j = 0; 
+  
+    // Loop to iterate over the text 
+    while (i < n) { 
+        if (P[j] == T[i]) { 
+  
+            // Matched the last character in P 
+            if (j == m - 1) { 
+                found_index = i - m + 1; 
+                break; 
+            } 
+            else { 
+                i++; 
+                j++; 
+            } 
+        } 
+        else { 
+            if (j > 0) { 
+  
+                // T[i] is not in P's alphabet 
+                if (FT.find(T[i]) == FT.end()) 
+  
+                    // Begin a new 
+                    // matching process 
+                    j = 0; 
+  
+                else
+                    j = FT[T[i]][j - 1]; 
+  
+                // Update 'j' to be the length of 
+                // the longest  suffix of P[1..j] 
+                // which is also a prefix of P 
+  
+                i++; 
+            } 
+            else
+                i++; 
+        } 
+    } 
+  
+    // Printing the index at which 
+    // the pattern is found 
+    if (found_index != -1) 
+        cout << "Found at index "
+             << found_index << '\n'; 
+    else
+        cout << "Not Found \n"; 
+  
+    for (char t : pattern_alphabet) 
+  
+        // Deallocate the arrays in FT 
+        delete[] FT[t]; 
+  
+    return; 
+} 
+  
+// Driver code 
+int main() 
+{ 
+    string T = "abcababbaabcccababaabababcaccaba"; 
+    string P = "ababaca"; 
+    set<char> pattern_alphabet 
+        = { 'a', 'b', 'c' }; 
+    KMP(T, P, pattern_alphabet); 
+} 
