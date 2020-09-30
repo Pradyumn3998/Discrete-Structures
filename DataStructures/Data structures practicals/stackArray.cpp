@@ -36,7 +36,7 @@ public:
 		}
 		catch(const char* exp){
 			cout<<exp<<endl;
-			return *(new T);
+			return INT_MIN; ///INT_MIN is like negative infinity for the int and is used to display Stack underflow
 		}
 	}	
 };
