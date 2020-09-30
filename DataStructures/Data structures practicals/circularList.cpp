@@ -162,13 +162,10 @@ public:
 	 ///printing whole list
 	 void printList(){
 	 	Node *trav=this->head;
-	 	while(true){
-	 		cout<<"\t"<<trav->data;
-	 		trav=trav->next;
-			if(trav==this->head){
-				break;
-			}
-	 	}
+	 	do{
+			cout<<"\t"<<trav->data;
+			trav=trav->next;
+		 }while (trav!=this->head);
 	 	cout<<endl;
 	 }
 };
