@@ -72,13 +72,10 @@ int Queue::dequeue(){
 void Queue::display(){
     cout<<"Front::"<<front->data<<endl;
     Node *trav=this->front;
-	 	while(true){
+	 	do{
 	 		cout<<"\t"<<trav->data;
 	 		trav=trav->next;
-            if(trav==this->front){
-                break;
-            }
-	 	}
+	 	}while(trav!=this->front);
 	 	cout<<endl<<"Rear::"<<end->data<<endl;
 }
 int main(){
